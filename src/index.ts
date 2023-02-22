@@ -1,5 +1,5 @@
 import express from 'express';
-import { GlobalErrorHandler } from "./middleware/ErrorMiddleware"
+import { GlobalErrorHandler } from './middleware/ErrorMiddleware';
 
 
 const app = express()
