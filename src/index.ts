@@ -13,5 +13,7 @@ app.get('/', (req, res) => {
 app.use(GlobalErrorHandler)
 
 app.listen(port, () => {
-    console.log(`Zion ${process.env.NODE_ENV.toUpperCase()} Server listening on port ${port}!`)
+    console.log(
+        `Zion ${process.env.NODE_ENV.toUpperCase()} Server listening on port ${port}!`
+    )
 })
