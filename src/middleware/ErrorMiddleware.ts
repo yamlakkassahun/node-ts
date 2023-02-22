@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 class HttpException extends Error {
     status: number;
     message: string;
+  
     constructor(status: number, message: string) {
       super(message);
       this.status = status;
@@ -16,7 +17,15 @@ export const GlobalErrorHandler = async (error: HttpException, request: Request,
     let errorStack = null
     
     if (process.env.NODE_ENV !== 'prod') { 
-        errorStack = error.stack
+      errorStack = error.stack
+
+      response
+      .status(status)
+      .send({
+        status,
+        message,
+        errorStack: errorStack !== null ? errorStack : '',
+      })
     }
 
   response
@@ -24,6 +33,5 @@ export const GlobalErrorHandler = async (error: HttpException, request: Request,
     .send({
       status,
       message,
-      errorStack,
     })
 }
